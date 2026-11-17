@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energia.IA — Análise Inteligente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <i data-lucide="zap"></i>
+      <span>Energia.IA</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="../index.html" class="nav-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+      <a href="equipamentos.html" class="nav-item"><i data-lucide="cpu"></i> Equipamentos</a>
+      <a href="analise.html" class="nav-item active"><i data-lucide="brain-circuit"></i> Análise Inteligente</a>
+      <a href="simulacao.html" class="nav-item"><i data-lucide="sliders"></i> Simulação</a>
+      <a href="alertas.html" class="nav-item"><i data-lucide="bell-ring"></i> Alertas</a>
+      <a href="relatorios.html" class="nav-item"><i data-lucide="file-bar-chart-2"></i> Relatórios</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Porto de Suape — PE</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span>Algoritmo Preditivo Ativo</span>
+      </div>
+      <div class="user-profile">
+        <div class="user-info">
+          <span class="user-name">Gestor de Operações</span>
+          <span class="user-role">Supervisão Elétrica</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-header">
+      <h1>Análise Inteligente de Desperdícios</h1>
+      <p>Detecção preditiva de desvios e anomalias baseada no histórico operacional de Suape</p>
+    </div>
+
+    <div class="actions-bar">
+      <button class="btn btn-primary" onclick="generateReport(this)">
+        <i data-lucide="sparkles"></i> Executar Diagnóstico com IA
+      </button>
+      <span id="report-status" class="status-message"></span>
+    </div>
+
+    <div class="analysis-grid">
+      <!-- Card Crítico: Motor 04 -->
+      <div class="analysis-card critical">
+        <div class="card-badge red">Anomalia de Consumo</div>
+        <h3>Motor 04 — Operação</h3>
+        <div class="metrics-row">
+          <div><span>Atual:</span> <strong>140 kWh</strong></div>
+          <div><span>Esperado:</span> <strong>100 kWh</strong></div>
+          <div><span>Desvio:</span> <strong class="red-text">+40%</strong></div>
+        </div>
+        <p class="description">
+          <strong>Análise da IA:</strong> Foi identificado um consumo elétrico 40% acima do comportamento histórico esperado para o regime de carga atual, indicando perda de eficiência energética.
+        </p>
+        <div class="recommendation">
+          <i data-lucide="check-circle-2"></i>
+          <span><strong>Recomendação:</strong> Verificar sobrecarga mecânica, balanceamento de fases e parametrização do inversor antes do próximo ciclo de movimentação.</span>
+        </div>
+      </div>
+
+      <!-- Card Atenção: Bomba 02 -->
+      <div class="analysis-card warning">
+        <div class="card-badge yellow">Baixo Fator de Potência</div>
+        <h3>Bomba 02 — Hidráulica</h3>
+        <div class="metrics-row">
+          <div><span>Atual:</span> <strong>0,78</strong></div>
+          <div><span>Padrão:</span> <strong>&gt; 0,90</strong></div>
+          <div><span>Multa Reativa:</span> <strong class="yellow-text">Risco Alto</strong></div>
+        </div>
+        <p class="description">
+          <strong>Análise da IA:</strong> O baixo fator de potência gera energia reativa excedente na rede interna, reduzindo a eficiência elétrica e gerando cobrança adicional na fatura.
+        </p>
+        <div class="recommendation">
+          <i data-lucide="check-circle-2"></i>
+          <span><strong>Recomendação:</strong> Ativar estágio adicional do banco de capacitores automático do setor hidráulico para elevar o FP acima de 0,95.</span>
+        </div>
+      </div>
+
+      <!-- Card Informativo: Refrigeração -->
+      <div class="analysis-card info">
+        <div class="card-badge blue">Pico de Demanda</div>
+        <h3>Setor de Refrigeração</h3>
+        <div class="metrics-row">
+          <div><span>Horário:</span> <strong>14h – 16h</strong></div>
+          <div><span>Carga Máxima:</span> <strong>378 kW</strong></div>
+        </div>
+        <p class="description">
+          <strong>Análise da IA:</strong> O acionamento simultâneo dos compressores de câmaras frigoríficas eleva a demanda instantânea próximo ao limite contratado.
+        </p>
+        <div class="recommendation">
+          <i data-lucide="check-circle-2"></i>
+          <span><strong>Recomendação:</strong> Escalonar o pré-resfriamento térmico para o intervalo entre 11h e 13h, suavizando a curva de demanda.</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

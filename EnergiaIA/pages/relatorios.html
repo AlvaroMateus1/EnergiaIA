@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energia.IA — Relatórios de Desempenho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <i data-lucide="zap"></i>
+      <span>Energia.IA</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="../index.html" class="nav-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+      <a href="equipamentos.html" class="nav-item"><i data-lucide="cpu"></i> Equipamentos</a>
+      <a href="analise.html" class="nav-item"><i data-lucide="brain-circuit"></i> Análise Inteligente</a>
+      <a href="simulacao.html" class="nav-item"><i data-lucide="sliders"></i> Simulação</a>
+      <a href="alertas.html" class="nav-item"><i data-lucide="bell-ring"></i> Alertas</a>
+      <a href="relatorios.html" class="nav-item active"><i data-lucide="file-bar-chart-2"></i> Relatórios</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Porto de Suape — PE</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span>Consolidado Energético — Suape</span>
+      </div>
+      <div class="user-profile">
+        <div class="user-info">
+          <span class="user-name">Gestor de Operações</span>
+          <span class="user-role">Supervisão Elétrica</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-header">
+      <h1>Relatórios de Eficiência Energética</h1>
+      <p>Histórico consolidado de consumo, economia obtida e indicadores de desempenho operacional</p>
+    </div>
+
+    <!-- KPIs Consolidados -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-title">Consumo Acumulado (Mês)</span>
+        <div class="kpi-value">206.400 <small>kWh</small></div>
+        <span class="kpi-trend positive"><i data-lucide="arrow-down-right"></i> -12,3% vs. linha de base</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Economia Total Gerada</span>
+        <div class="kpi-value highlight">R$ 24.680</div>
+        <span class="kpi-subtext">Acumulado nos últimos 6 meses</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Eficiência Média da Planta</span>
+        <div class="kpi-value">91,4%</div>
+        <span class="kpi-trend positive"><i data-lucide="trending-up"></i> +4,8% após implantação IA</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Redução de CO₂ Estimada</span>
+        <div class="kpi-value">14,2 <small>tCO₂</small></div>
+        <span class="kpi-subtext">Indicador de sustentabilidade ESG</span>
+      </div>
+    </section>
+
+    <!-- Gráfico Histórico Semestral -->
+    <section class="chart-section card">
+      <div class="chart-header">
+        <div>
+          <h3>Evolução Semestral de Consumo (MWh)</h3>
+          <p>Comparação entre consumo histórico sem IA e consumo otimizado após ações recomendadas</p>
+        </div>
+        <button class="btn btn-outline" onclick="window.print()">
+          <i data-lucide="printer"></i> Imprimir / Salvar PDF
+        </button>
+      </div>
+      <div class="chart-container">
+        <canvas id="reportsChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Tabela de Histórico Mensal -->
+    <section class="section-block">
+      <h2>Histórico Mensal de Desempenho</h2>
+      <div class="card table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Mês de Referência</th>
+              <th>Consumo Medido</th>
+              <th>Demanda Máxima</th>
+              <th>Fator de Potência Médio</th>
+              <th>Economia Estimada</th>
+              <th>Status Meta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Novembro / 2026</strong></td>
+              <td>206.400 kWh</td>
+              <td>342 kW</td>
+              <td>0,92</td>
+              <td class="green-text"><strong>R$ 4.280,00</strong></td>
+              <td><span class="status-pill ok">Meta Atingida</span></td>
+            </tr>
+            <tr>
+              <td><strong>Outubro / 2026</strong></td>
+              <td>214.100 kWh</td>
+              <td>355 kW</td>
+              <td>0,93</td>
+              <td class="green-text"><strong>R$ 4.650,00</strong></td>
+              <td><span class="status-pill ok">Meta Atingida</span></td>
+            </tr>
+            <tr>
+              <td><strong>Setembro / 2026</strong></td>
+              <td>221.000 kWh</td>
+              <td>361 kW</td>
+              <td>0,91</td>
+              <td class="green-text"><strong>R$ 4.120,00</strong></td>
+              <td><span class="status-pill ok">Meta Atingida</span></td>
+            </tr>
+            <tr>
+              <td><strong>Agosto / 2026</strong></td>
+              <td>229.500 kWh</td>
+              <td>378 kW</td>
+              <td>0,89</td>
+              <td class="yellow-text"><strong>R$ 3.490,00</strong></td>
+              <td><span class="status-pill alert">Ajuste de FP</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script>
+    lucide.createIcons();
+    initReportsChart();
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energia.IA — Simulação Digital Twin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <i data-lucide="zap"></i>
+      <span>Energia.IA</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="../index.html" class="nav-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+      <a href="equipamentos.html" class="nav-item"><i data-lucide="cpu"></i> Equipamentos</a>
+      <a href="analise.html" class="nav-item"><i data-lucide="brain-circuit"></i> Análise Inteligente</a>
+      <a href="simulacao.html" class="nav-item active"><i data-lucide="sliders"></i> Simulação</a>
+      <a href="alertas.html" class="nav-item"><i data-lucide="bell-ring"></i> Alertas</a>
+      <a href="relatorios.html" class="nav-item"><i data-lucide="file-bar-chart-2"></i> Relatórios</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Porto de Suape — PE</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span>Digital Twin — Ambiente Virtual Suape</span>
+      </div>
+      <div class="user-profile">
+        <div class="user-info">
+          <span class="user-name">Gestor de Operações</span>
+          <span class="user-role">Supervisão Elétrica</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-header">
+      <h1>Simulação de Operação (Digital Twin)</h1>
+      <p>Modifique parâmetros de potência e tempo de operação para estimar ganhos de eficiência antes de aplicar na planta real</p>
+    </div>
+
+    <div class="twin-layout">
+      <!-- Diagrama Virtual de Carga -->
+      <div class="card twin-diagram">
+        <h3>Topologia Virtual da Rede Elétrica</h3>
+        <div class="topology-tree">
+          <div class="node sub">Subestação Principal Suape (69 kV)</div>
+          <div class="line"></div>
+          <div class="node quad">Quadro Geral de Distribuição (QGD-01)</div>
+          <div class="line-split"></div>
+          <div class="nodes-row">
+            <div class="node load">Motor 01<br><strong id="top-m1">78 kW</strong></div>
+            <div class="node load">Motor 02<br><strong id="top-m2">82 kW</strong></div>
+            <div class="node load alert">Motor 04<br><strong id="top-m4">105 kW</strong></div>
+          </div>
+        </div>
+        <p class="sim-disclaimer" style="margin-top: 28px;">
+          <i data-lucide="info"></i>
+          <span><strong>Aviso de Simulação:</strong> Este Gêmeo Digital utiliza modelos matemáticos para projetar cenários. Nenhuma alteração real é enviada aos equipamentos físicos.</span>
+        </p>
+      </div>
+
+      <!-- Controles Interativos -->
+      <div class="card twin-controls">
+        <h3>Controles de Cenário Operacional</h3>
+
+        <div class="control-group">
+          <label><span>Potência Motor 01:</span> <strong id="val-m1">100%</strong></label>
+          <input type="range" id="slider-m1" min="40" max="100" value="100" oninput="updateSimulation()">
+        </div>
+
+        <div class="control-group">
+          <label><span>Potência Motor 02:</span> <strong id="val-m2">100%</strong></label>
+          <input type="range" id="slider-m2" min="40" max="100" value="100" oninput="updateSimulation()">
+        </div>
+
+        <div class="control-group">
+          <label><span>Potência Motor 04 (Otimização IA):</span> <strong id="val-m4">100%</strong></label>
+          <input type="range" id="slider-m4" min="40" max="100" value="100" oninput="updateSimulation()">
+        </div>
+
+        <div class="control-group">
+          <label><span>Tempo de Funcionamento Diário:</span> <strong id="val-hours">16h / dia</strong></label>
+          <input type="range" id="slider-hours" min="6" max="24" value="16" oninput="updateSimulation()">
+        </div>
+
+        <div class="results-box">
+          <h4>Impacto Estimado da Simulação</h4>
+          <div class="res-row">
+            <span>Demanda Atual:</span> <strong>342 kW</strong>
+          </div>
+          <div class="res-row">
+            <span>Nova Demanda Simulada:</span> <strong id="sim-demanda" class="green-text">342 kW</strong>
+          </div>
+          <div class="res-row">
+            <span>Redução de Demanda:</span> <strong id="sim-reducao">0 kW</strong>
+          </div>
+          <div class="res-row">
+            <span>Economia Energética:</span> <strong id="sim-kwh" class="green-text">0 kWh/mês</strong>
+          </div>
+          <div class="res-row">
+            <span>Economia Financeira Estimada:</span> <strong id="sim-economia" class="highlight">R$ 0,00</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script>
+    lucide.createIcons();
+    updateSimulation();
+  </script>
+</body>
+</html>

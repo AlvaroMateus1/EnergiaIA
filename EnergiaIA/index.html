@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energia.IA — Dashboard Suape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Menu Lateral -->
+  <aside class="sidebar">
+    <div class="logo">
+      <i data-lucide="zap"></i>
+      <span>Energia.IA</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="index.html" class="nav-item active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+      <a href="pages/equipamentos.html" class="nav-item"><i data-lucide="cpu"></i> Equipamentos</a>
+      <a href="pages/analise.html" class="nav-item"><i data-lucide="brain-circuit"></i> Análise Inteligente</a>
+      <a href="pages/simulacao.html" class="nav-item"><i data-lucide="sliders"></i> Simulação</a>
+      <a href="pages/alertas.html" class="nav-item"><i data-lucide="bell-ring"></i> Alertas</a>
+      <a href="pages/relatorios.html" class="nav-item"><i data-lucide="file-bar-chart-2"></i> Relatórios</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Porto de Suape — PE</p>
+    </div>
+  </aside>
+
+  <!-- Conteúdo Principal -->
+  <main class="main-content">
+    <header class="topbar">
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span>Sistema Operacional — Suape IoT Net</span>
+      </div>
+      <div class="user-profile">
+        <a href="pages/alertas.html" class="notif-btn" title="Ver alertas ativos">
+          <i data-lucide="bell"></i>
+          <span class="badge">3</span>
+        </a>
+        <div class="user-info">
+          <span class="user-name">Gestor de Operações</span>
+          <span class="user-role">Supervisão Elétrica</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-header">
+      <h1>Dashboard Energético</h1>
+      <p>Monitoramento e eficiência em tempo real nas operações de Suape</p>
+    </div>
+
+    <!-- Cards Principais (KPIs) -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-title">Consumo Atual</span>
+        <div class="kpi-value" id="kpi-consumo">8.420 <small>kWh</small></div>
+        <span class="kpi-trend positive"><i data-lucide="arrow-down-right"></i> 8,4% vs. anterior</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Demanda Atual</span>
+        <div class="kpi-value" id="kpi-demanda">342 <small>kW</small></div>
+        <span class="kpi-subtext">Pico registrado: 378 kW</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Economia Estimada</span>
+        <div class="kpi-value highlight">R$ 4.280</div>
+        <span class="kpi-subtext">Projeção mensal acumulada</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Equipamentos Monitorados</span>
+        <div class="kpi-value">8</div>
+        <span class="kpi-trend negative"><i data-lucide="alert-triangle"></i> 3 requerem atenção</span>
+      </div>
+    </section>
+
+    <!-- Gráfico de Consumo -->
+    <section class="chart-section card">
+      <div class="chart-header">
+        <div>
+          <h3>Consumo elétrico — Comparativo IA</h3>
+          <p>Curva esperada pela Inteligência Artificial versus consumo real medido</p>
+        </div>
+        <div class="filter-buttons">
+          <button class="filter-btn active">Hoje</button>
+          <button class="filter-btn">7 dias</button>
+          <button class="filter-btn">30 dias</button>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="consumptionChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Indicadores Elétricos -->
+    <section class="section-block">
+      <h2>Indicadores de eficiência elétrica</h2>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="label">Tensão Média</span>
+          <span class="value">380 V</span>
+          <span class="status-pill ok">Estável</span>
+        </div>
+        <div class="metric-card">
+          <span class="label">Corrente Média</span>
+          <span class="value">142 A</span>
+          <span class="status-pill ok">Nominal</span>
+        </div>
+        <div class="metric-card">
+          <span class="label">Potência Ativa</span>
+          <span class="value">342 kW</span>
+          <span class="status-pill ok">78% da capacidade</span>
+        </div>
+        <div class="metric-card">
+          <span class="label">Fator de Potência</span>
+          <span class="value warning">0,92</span>
+          <span class="status-pill alert">Atenção (&lt; 0,95)</span>
+        </div>
+        <div class="metric-card">
+          <span class="label">Demanda Máxima</span>
+          <span class="value">378 kW</span>
+          <span class="status-pill ok">Abaixo do limite</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alertas Recentes -->
+    <section class="section-block">
+      <h2>Alertas recentes do sistema</h2>
+      <div class="alerts-list">
+        <div class="alert-item alert-critical">
+          <i data-lucide="alert-circle" class="alert-icon"></i>
+          <div class="alert-content">
+            <h4>Motor 04 — Operação</h4>
+            <p>Consumo elétrico <strong>40% acima do esperado</strong>. Atual: 140 kWh | Esperado: 100 kWh</p>
+          </div>
+          <a href="pages/analise.html" class="btn btn-outline">Ver análise</a>
+        </div>
+        <div class="alert-item alert-warning">
+          <i data-lucide="alert-triangle" class="alert-icon"></i>
+          <div class="alert-content">
+            <h4>Bomba 02 — Hidráulica</h4>
+            <p>Fator de potência abaixo do padrão. Atual: <strong>0,78</strong> | Esperado: &gt; 0,90</p>
+          </div>
+          <a href="pages/analise.html" class="btn btn-outline">Ver análise</a>
+        </div>
+        <div class="alert-item alert-info">
+          <i data-lucide="activity" class="alert-icon"></i>
+          <div class="alert-content">
+            <h4>Setor de Refrigeração</h4>
+            <p>Pico de demanda identificado entre 14h e 16h.</p>
+          </div>
+          <a href="pages/analise.html" class="btn btn-outline">Ver análise</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+  <script>
+    lucide.createIcons();
+    initDashboardChart();
+  </script>
+</body>
+</html>

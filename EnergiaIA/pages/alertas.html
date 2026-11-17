@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energia.IA — Alertas de Eficiência</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <i data-lucide="zap"></i>
+      <span>Energia.IA</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="../index.html" class="nav-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+      <a href="equipamentos.html" class="nav-item"><i data-lucide="cpu"></i> Equipamentos</a>
+      <a href="analise.html" class="nav-item"><i data-lucide="brain-circuit"></i> Análise Inteligente</a>
+      <a href="simulacao.html" class="nav-item"><i data-lucide="sliders"></i> Simulação</a>
+      <a href="alertas.html" class="nav-item active"><i data-lucide="bell-ring"></i> Alertas</a>
+      <a href="relatorios.html" class="nav-item"><i data-lucide="file-bar-chart-2"></i> Relatórios</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Porto de Suape — PE</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span>Monitoramento Contínuo de Anomalias</span>
+      </div>
+      <div class="user-profile">
+        <div class="user-info">
+          <span class="user-name">Gestor de Operações</span>
+          <span class="user-role">Supervisão Elétrica</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-header">
+      <h1>Central de Alertas Energéticos</h1>
+      <p>Ocorrências detectadas pela Inteligência Artificial que impactam o consumo e a demanda elétrica</p>
+    </div>
+
+    <div class="actions-bar">
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterAlerts('all', this)">Todos (3)</button>
+        <button class="filter-btn" onclick="filterAlerts('critical', this)">Críticos (1)</button>
+        <button class="filter-btn" onclick="filterAlerts('warning', this)">Atenção (1)</button>
+        <button class="filter-btn" onclick="filterAlerts('info', this)">Informativos (1)</button>
+      </div>
+    </div>
+
+    <div class="alerts-list">
+      <div class="alert-item alert-critical" data-level="critical">
+        <i data-lucide="alert-circle" class="alert-icon"></i>
+        <div class="alert-content">
+          <h4>Motor 04 — Consumo Acima do Esperado (+40%)</h4>
+          <p>Consumo registrado de <strong>140 kWh</strong> contra uma linha de base esperada de <strong>100 kWh</strong> no setor de Operação.</p>
+          <div class="alert-meta">
+            <span>Setor: Operação</span>
+            <span>•</span>
+            <span>Impacto estimado: +R$ 1.850/mês</span>
+          </div>
+        </div>
+        <a href="analise.html" class="btn btn-primary">Diagnosticar</a>
+      </div>
+
+      <div class="alert-item alert-warning" data-level="warning">
+        <i data-lucide="alert-triangle" class="alert-icon"></i>
+        <div class="alert-content">
+          <h4>Bomba 02 — Fator de Potência Abaixo do Padrão</h4>
+          <p>Fator de potência medido em <strong>0,78</strong> (mínimo regulatório configurado: <strong>0,92</strong>). Risco de cobrança de energia reativa excedente.</p>
+          <div class="alert-meta">
+            <span>Setor: Hidráulica</span>
+            <span>•</span>
+            <span>Impacto estimado: +R$ 920/mês</span>
+          </div>
+        </div>
+        <a href="analise.html" class="btn btn-outline">Ver recomendação</a>
+      </div>
+
+      <div class="alert-item alert-info" data-level="info">
+        <i data-lucide="activity" class="alert-icon"></i>
+        <div class="alert-content">
+          <h4>Sistema de Refrigeração — Pico de Demanda Identificado</h4>
+          <p>Demanda atingiu <strong>378 kW</strong> entre 14h e 16h devido ao acionamento simultâneo dos compressores.</p>
+          <div class="alert-meta">
+            <span>Setor: Armazenamento</span>
+            <span>•</span>
+            <span>Sugestão: Escalonamento de carga</span>
+          </div>
+        </div>
+        <a href="simulacao.html" class="btn btn-outline">Simular ajuste</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

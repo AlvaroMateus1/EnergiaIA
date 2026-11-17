@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energia.IA — Equipamentos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <i data-lucide="zap"></i>
+      <span>Energia.IA</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="../index.html" class="nav-item"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+      <a href="equipamentos.html" class="nav-item active"><i data-lucide="cpu"></i> Equipamentos</a>
+      <a href="analise.html" class="nav-item"><i data-lucide="brain-circuit"></i> Análise Inteligente</a>
+      <a href="simulacao.html" class="nav-item"><i data-lucide="sliders"></i> Simulação</a>
+      <a href="alertas.html" class="nav-item"><i data-lucide="bell-ring"></i> Alertas</a>
+      <a href="relatorios.html" class="nav-item"><i data-lucide="file-bar-chart-2"></i> Relatórios</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p>Porto de Suape — PE</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span>Telemetria IoT — Porto de Suape</span>
+      </div>
+      <div class="user-profile">
+        <div class="user-info">
+          <span class="user-name">Gestor de Operações</span>
+          <span class="user-role">Supervisão Elétrica</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-header">
+      <h1>Equipamentos Monitorados</h1>
+      <p>Telemetria em tempo real e parâmetros elétricos dos ativos em operação</p>
+    </div>
+
+    <div class="card table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Equipamento</th>
+            <th>Setor</th>
+            <th>Potência Ativa</th>
+            <th>Consumo</th>
+            <th>Tensão</th>
+            <th>Corrente</th>
+            <th>Fator Potência</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="equipments-table-body">
+          <!-- Preenchido dinamicamente via js/script.js -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Modal de Detalhes do Equipamento -->
+  <div class="modal-backdrop" id="modal-details">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Detalhes do Equipamento</h3>
+        <button class="close-btn" onclick="closeModal()" aria-label="Fechar modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body-content">
+        <!-- Conteúdo dinâmico -->
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/script.js"></script>
+  <script>
+    lucide.createIcons();
+    renderEquipmentsTable();
+  </script>
+</body>
+</html>
