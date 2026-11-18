@@ -9,6 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="../css/style.css">
+  <script>
+    if (!localStorage.getItem("energiaia_session")) {
+      window.location.replace("login.html");
+    }
+  </script>
 </head>
 <body>
   <aside class="sidebar">
@@ -35,11 +40,15 @@
         <span class="status-dot"></span>
         <span>Telemetria IoT — Porto de Suape</span>
       </div>
-      <div class="user-profile">
+     <div class="user-profile">
         <div class="user-info">
-          <span class="user-name">Gestor de Operações</span>
-          <span class="user-role">Supervisão Elétrica</span>
+          <span class="user-name" id="session-user-name">Gestor de Operações</span>
+          <span class="user-role" id="session-user-role">Supervisão Elétrica</span>
         </div>
+        <button type="button" class="btn-logout" onclick="logoutUser(true)" title="Sair do sistema">
+          <i data-lucide="log-out"></i>
+          <span>Sair</span>
+        </button>
       </div>
     </header>
 
@@ -87,6 +96,7 @@
   <script>
     lucide.createIcons();
     renderEquipmentsTable();
+    loadUserSession();
   </script>
 </body>
 </html>

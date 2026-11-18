@@ -10,6 +10,11 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    if (!localStorage.getItem("energiaia_session")) {
+      window.location.replace("pages/login.html");
+    }
+  </script>
 </head>
 <body>
   <!-- Menu Lateral -->
@@ -44,9 +49,13 @@
           <span class="badge">3</span>
         </a>
         <div class="user-info">
-          <span class="user-name">Gestor de Operações</span>
-          <span class="user-role">Supervisão Elétrica</span>
+          <span class="user-name" id="session-user-name">Gestor de Operações</span>
+          <span class="user-role" id="session-user-role">Supervisão Elétrica</span>
         </div>
+        <button type="button" class="btn-logout" onclick="logoutUser(false)" title="Sair do sistema">
+          <i data-lucide="log-out"></i>
+          <span>Sair</span>
+        </button>
       </div>
     </header>
 
@@ -162,8 +171,9 @@
   </main>
 
   <script src="js/script.js"></script>
-  <script>
+ <script>
     lucide.createIcons();
+    loadUserSession();
     initDashboardChart();
   </script>
 </body>

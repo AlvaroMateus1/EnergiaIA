@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energia.IA — Acesso ao Sistema</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="auth-body">
+  <div class="auth-wrapper">
+    <!-- Painel Institucional Esquerdo -->
+    <section class="auth-brand-panel">
+      <div class="logo auth-logo">
+        <i data-lucide="zap"></i>
+        <span>Energia.IA</span>
+      </div>
+      <h1>Eficiência Energética Inteligente</h1>
+      <p class="auth-subtitle">
+        Plataforma de telemetria IoT, diagnóstico preditivo e Digital Twin para as operações do Complexo Industrial e Portuário de Suape.
+      </p>
+
+      <div class="auth-highlights">
+        <div class="auth-highlight-item">
+          <i data-lucide="activity"></i>
+          <div>
+            <strong>Monitoramento em Tempo Real</strong>
+            <span>Acompanhe tensão, corrente, fator de potência e anomalias críticas.</span>
+          </div>
+        </div>
+        <div class="auth-highlight-item">
+          <i data-lucide="brain-circuit"></i>
+          <div>
+            <strong>Diagnóstico Preditivo com IA</strong>
+            <span>Identifique desperdícios e receba recomendações de economia.</span>
+          </div>
+        </div>
+        <div class="auth-highlight-item">
+          <i data-lucide="sliders"></i>
+          <div>
+            <strong>Simulação Digital Twin</strong>
+            <span>Teste ajustes de carga antes de aplicar nas máquinas reais.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-footer-tag">
+        <span class="status-dot"></span>
+        <span>Suape IoT Net • Ambiente Operacional</span>
+      </div>
+    </section>
+
+    <!-- Painel Direito: Formulários de Login e Cadastro -->
+    <section class="auth-form-panel">
+      <div class="auth-card">
+        <div class="auth-tabs" role="tablist">
+          <button type="button" class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Entrar</button>
+          <button type="button" class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Criar Conta</button>
+        </div>
+
+        <div id="auth-feedback" class="auth-feedback" style="display: none;"></div>
+
+        <!-- FORMULÁRIO DE LOGIN -->
+        <form id="form-login" class="auth-form" onsubmit="handleLogin(event)">
+          <div class="auth-form-header">
+            <h2>Bem-vindo de volta</h2>
+            <p>Acesse o painel de supervisão energética de Suape</p>
+          </div>
+
+          <div class="form-group">
+            <label for="login-email">E-mail corporativo</label>
+            <div class="input-with-icon">
+              <i data-lucide="mail"></i>
+              <input type="email" id="login-email" placeholder="operador@suape.pe.gov.br" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Senha</label>
+            <div class="input-with-icon">
+              <i data-lucide="lock"></i>
+              <input type="password" id="login-password" placeholder="••••••••" required>
+              <button type="button" class="toggle-pass-btn" onclick="togglePassword('login-password', this)" aria-label="Mostrar ou ocultar senha">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary auth-submit-btn">
+            <i data-lucide="log-in"></i> Acessar Dashboard
+          </button>
+
+          <div class="auth-demo-box">
+            <span>Acesso rápido para demonstração:</span>
+            <button type="button" class="btn btn-outline btn-sm" onclick="fillDemoCredentials()">
+              Preencher conta demo
+            </button>
+          </div>
+        </form>
+
+        <!-- FORMULÁRIO DE CADASTRO -->
+        <form id="form-register" class="auth-form" style="display: none;" onsubmit="handleRegister(event)">
+          <div class="auth-form-header">
+            <h2>Cadastrar Operador</h2>
+            <p>Crie sua credencial para monitorar os ativos industriais</p>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-name">Nome completo</label>
+            <div class="input-with-icon">
+              <i data-lucide="user"></i>
+              <input type="text" id="reg-name" placeholder="Ex.: Álvaro Mateus" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-role">Cargo / Função</label>
+            <div class="input-with-icon">
+              <i data-lucide="briefcase"></i>
+              <select id="reg-role" required>
+                <option value="Gestor de Operações">Gestor de Operações</option>
+                <option value="Engenheiro Eletricista">Engenheiro Eletricista</option>
+                <option value="Supervisor de Manutenção">Supervisor de Manutenção</option>
+                <option value="Analista de Eficiência">Analista de Eficiência</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-email">E-mail corporativo</label>
+            <div class="input-with-icon">
+              <i data-lucide="mail"></i>
+              <input type="email" id="reg-email" placeholder="seu.nome@suape.pe.gov.br" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-password">Criar senha (mín. 6 caracteres)</label>
+            <div class="input-with-icon">
+              <i data-lucide="lock"></i>
+              <input type="password" id="reg-password" minlength="6" placeholder="Mínimo 6 caracteres" required>
+              <button type="button" class="toggle-pass-btn" onclick="togglePassword('reg-password', this)" aria-label="Mostrar ou ocultar senha">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary auth-submit-btn">
+            <i data-lucide="user-plus"></i> Concluir Cadastro e Entrar
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="../js/script.js"></script>
+  <script>
+    lucide.createIcons();
+    redirectIfAuthenticated();
+  </script>
+</body>
+</html>

@@ -342,3 +342,144 @@ function filterAlerts(level, btn) {
     }
   });
 }
+
+// ============================================================================
+// 7. AUTENTICAÇÃO (LOGIN, CADASTRO E CONTROLE DE SESSÃO)
+// ============================================================================
+const STORAGE_USERS_KEY = 'energiaia_users';
+const STORAGE_SESSION_KEY = 'energiaia_session';
+
+function getRegisteredUsers() {
+  const defaultUsers = [
+    {
+      name: 'Gestor de Operações',
+      role: 'Supervisão Elétrica',
+      email: 'operador@suape.pe.gov.br',
+      password: '123456'
+    }
+  ];
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_USERS_KEY));
+    if (Array.isArray(saved) && saved.length > 0) return saved;
+  } catch (e) {}
+  localStorage.setItem(STORAGE_USERS_KEY, JSON.stringify(defaultUsers));
+  return defaultUsers;
+}
+
+function switchAuthTab(tab) {
+  const formLogin = document.getElementById('form-login');
+  const formRegister = document.getElementById('form-register');
+  const tabLogin = document.getElementById('tab-login');
+  const tabRegister = document.getElementById('tab-register');
+  const feedback = document.getElementById('auth-feedback');
+
+  if (feedback) feedback.style.display = 'none';
+
+  if (tab === 'login') {
+    formLogin.style.display = 'block';
+    formRegister.style.display = 'none';
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+  } else {
+    formLogin.style.display = 'none';
+    formRegister.style.display = 'block';
+    tabLogin.classList.remove('active');
+    tabRegister.classList.add('active');
+  }
+}
+
+function showAuthFeedback(message, type) {
+  const feedback = document.getElementById('auth-feedback');
+  if (!feedback) return;
+  feedback.className = `auth-feedback ${type}`;
+  feedback.innerText = message;
+  feedback.style.display = 'block';
+}
+
+function togglePassword(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+function fillDemoCredentials() {
+  document.getElementById('login-email').value = 'operador@suape.pe.gov.br';
+  document.getElementById('login-password').value = '123456';
+  showAuthFeedback('Credenciais de demonstração preenchidas. Clique em "Acessar Dashboard".', 'success');
+}
+
+function handleLogin(event) {
+  event.preventDefault();
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const password = document.getElementById('login-password').value;
+
+  const users = getRegisteredUsers();
+  const found = users.find(u => u.email.toLowerCase() === email && u.password === password);
+
+  if (!found) {
+    showAuthFeedback('E-mail ou senha inválidos. Verifique os dados ou clique em "Criar Conta".', 'error');
+    return;
+  }
+
+  localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify({
+    name: found.name,
+    role: found.role,
+    email: found.email
+  }));
+
+  showAuthFeedback('Login realizado! Redirecionando para o Dashboard...', 'success');
+  setTimeout(() => {
+    window.location.href = '../index.html';
+  }, 500);
+}
+
+function handleRegister(event) {
+  event.preventDefault();
+  const name = document.getElementById('reg-name').value.trim();
+  const role = document.getElementById('reg-role').value;
+  const email = document.getElementById('reg-email').value.trim().toLowerCase();
+  const password = document.getElementById('reg-password').value;
+
+  const users = getRegisteredUsers();
+  if (users.some(u => u.email.toLowerCase() === email)) {
+    showAuthFeedback('Este e-mail já está cadastrado. Acesse a aba "Entrar".', 'error');
+    return;
+  }
+
+  const newUser = { name, role, email, password };
+  users.push(newUser);
+  localStorage.setItem(STORAGE_USERS_KEY, JSON.stringify(users));
+
+  localStorage.setItem(STORAGE_SESSION_KEY, JSON.stringify({
+    name: newUser.name,
+    role: newUser.role,
+    email: newUser.email
+  }));
+
+  showAuthFeedback('Cadastro concluído com sucesso! Entrando no sistema...', 'success');
+  setTimeout(() => {
+    window.location.href = '../index.html';
+  }, 600);
+}
+
+function redirectIfAuthenticated() {
+  if (localStorage.getItem(STORAGE_SESSION_KEY)) {
+    window.location.replace('../index.html');
+  }
+}
+
+function loadUserSession() {
+  try {
+    const session = JSON.parse(localStorage.getItem(STORAGE_SESSION_KEY));
+    if (!session) return;
+    const nameEl = document.getElementById('session-user-name');
+    const roleEl = document.getElementById('session-user-role');
+    if (nameEl && session.name) nameEl.innerText = session.name;
+    if (roleEl && session.role) roleEl.innerText = session.role;
+  } catch (e) {}
+}
+
+function logoutUser(isInsidePagesFolder) {
+  localStorage.removeItem(STORAGE_SESSION_KEY);
+  window.location.href = isInsidePagesFolder ? 'login.html' : 'pages/login.html';
+}

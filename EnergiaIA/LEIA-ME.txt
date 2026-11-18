@@ -1,0 +1,38 @@
+================================================================================
+PROJETO ENERGIA.IA — MVP DE EFICIÊNCIA ENERGÉTICA (COMPLEXO DE SUAPE - PE)
+================================================================================
+
+1. SOBRE O PROJETO
+O Energia.IA é um protótipo funcional (MVP) desenvolvido em HTML5, CSS3 e
+JavaScript puro para monitoramento de eficiência energética em operações
+industriais e portuárias, integrando conceitos de IoT, Inteligência Artificial
+e Digital Twin (Gêmeo Digital).
+
+2. ESTRUTURA DE PASTAS
+EnergiaIA/
+├── index.html               -> Dashboard principal (visão geral e gráficos)
+├── css/
+│   └── style.css            -> Identidade visual e estilos responsivos
+├── js/
+│   └── script.js            -> Lógica dos gráficos, telemetria e simulação
+├── pages/
+│   ├── equipamentos.html    -> Lista de ativos IoT e modal de telemetria
+│   ├── analise.html         -> Diagnósticos preditivos gerados por IA
+│   ├── simulacao.html       -> Digital Twin interativo para testar cenários
+│   ├── alertas.html         -> Central de alertas críticos e preventivos
+│   └── relatorios.html      -> Histórico consolidado e indicadores
+└── LEIA-ME.txt              -> Este guia rápido
+
+3. COMO EXECUTAR NO VISUAL STUDIO CODE
+1. Extraia a pasta "EnergiaIA" do arquivo ZIP.
+2. Abra o Visual Studio Code.
+3. Vá em Arquivo (File) > Abrir Pasta (Open Folder) e selecione a pasta "EnergiaIA".
+4. Instale a extensão "Live Server" (de Ritwick Dey), caso ainda não tenha.
+5. Clique com o botão direito no arquivo "index.html" e escolha "Open with Live Server".
+
+4. OBSERVAÇÃO IMPORTANTE SOBRE OS DADOS
+Por se tratar de um MVP acadêmico de frontend, os valores de sensores IoT,
+diagnósticos de IA e cálculos do Digital Twin utilizam dados simulados
+coerentes com uma operação industrial/portuária, sem conexão com hardware real
+ou banco de dados externo.
+================================================================================
